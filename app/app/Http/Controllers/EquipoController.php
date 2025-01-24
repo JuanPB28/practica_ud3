@@ -114,7 +114,7 @@ class EquipoController extends Controller
         try {
             $equipo = Equipo::find($id);
             if ($equipo) {
-                return response()->json($equipo->ficha_tecnica, 200);
+                return response()->json($equipo->fichaTecnica, 200);
             } else {
                 return response()->json(['message' => 'Equipo no encontrado'], 404);
             }

@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             FichaTecnicaSeeder::class,
             OperacionSeeder::class,
             MantenimientoSeeder::class,
+            OperacionesMantenimientosSeeder::class,
             IncidenciaSeeder::class,
         ]);
     }
