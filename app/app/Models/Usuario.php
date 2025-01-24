@@ -22,6 +22,6 @@ class Usuario extends Model
 
     public function equipos()
     {
-        return $this->hasManyThrough(Equipo::class, Mantenimiento::class);
+        return $this->hasManyThrough(Equipo::class, Mantenimiento::class, 'id_usuario', 'id', 'id', 'id_equipo');
     }
 }

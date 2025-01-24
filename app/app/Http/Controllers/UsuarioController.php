@@ -102,4 +102,64 @@ class UsuarioController extends Controller
             return response()->json(['message' => 'Error al eliminar el usuario'], 500);
         }
     }
+
+    /**
+     * Display a listing of the resource.
+     * 
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function incidencias(int $id): JsonResponse
+    {
+        try {
+            $usuario = Usuario::find($id);
+            if ($usuario) {
+                return response()->json($usuario->incidencias, 200);
+            } else {
+                return response()->json(['message' => 'Usuario no encontrado'], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Error al obtener las incidencias'], 500);
+        }
+    }
+
+    /**
+     * Display a listing of the resource.
+     * 
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function mantenimientos(int $id): JsonResponse
+    {
+        try {
+            $usuario = Usuario::find($id);
+            if ($usuario) {
+                return response()->json($usuario->mantenimientos, 200);
+            } else {
+                return response()->json(['message' => 'Usuario no encontrado'], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Error al obtener los mantenimientos'], 500);
+        }
+    }
+
+    /**
+     * Display a listing of the resource.
+     * 
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function equipos(int $id): JsonResponse
+    {
+        try {
+            $usuario = Usuario::find($id);
+            if ($usuario) {
+                return response()->json($usuario->equipos, 200);
+            } else {
+                return response()->json(['message' => 'Usuario no encontrado'], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Error al obtener los equipos'], 500);
+        }
+    }
 }

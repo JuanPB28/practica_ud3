@@ -19,4 +19,9 @@ class Mantenimiento extends Model
     {
         return $this->belongsTo(Equipo::class, 'id_equipo');
     }
+
+    public function operaciones()
+    {
+        return $this->belongsToMany(Operacion::class, 'operaciones_mantenimientos', 'id_mantenimiento', 'id_operacion');
+    }
 }

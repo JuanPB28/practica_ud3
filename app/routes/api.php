@@ -29,12 +29,20 @@ Route::post('/usuario', [UsuarioController::class, 'store']);
 Route::put('/usuario/{id}', [UsuarioController::class, 'update']);
 Route::delete('/usuario/{id}', [UsuarioController::class, 'destroy']);
 
+Route::get('/usuario/{id}/incidencias', [UsuarioController::class, 'incidencias']);
+Route::get('/usuario/{id}/mantenimientos', [UsuarioController::class, 'mantenimientos']);
+Route::get('/usuario/{id}/equipos', [UsuarioController::class, 'equipos']);
+
 // Ruta Equipo
 Route::get('/equipos', [EquipoController::class, 'index']);
 Route::get('/equipo/{id}', [EquipoController::class, 'show']);
 Route::post('/equipo', [EquipoController::class, 'store']);
 Route::put('/equipo/{id}', [EquipoController::class, 'update']);
 Route::delete('/equipo/{id}', [EquipoController::class, 'destroy']);
+
+Route::get('/equipo/{id}/ficha_tecnica', [EquipoController::class, 'ficha_tecnica']);
+Route::get('/equipo/{id}/incidencias', [EquipoController::class, 'incidencias']);
+Route::get('/equipo/{id}/mantenimientos', [EquipoController::class, 'mantenimientos']);
 
 // Ruta FichaTecnica
 Route::get('/fichas_tecnicas', [FichaTecnicaController::class, 'index']);
@@ -56,6 +64,8 @@ Route::get('/mantenimiento/{id}', [MantenimientoController::class, 'show']);
 Route::post('/mantenimiento', [MantenimientoController::class, 'store']);
 Route::put('/mantenimiento/{id}', [MantenimientoController::class, 'update']);
 Route::delete('/mantenimiento/{id}', [MantenimientoController::class, 'destroy']);
+
+Route::get('/mantenimiento/{id}/operaciones', [MantenimientoController::class, 'operaciones']);
 
 // Ruta Incidencia
 Route::get('/incidencias', [IncidenciaController::class, 'index']);

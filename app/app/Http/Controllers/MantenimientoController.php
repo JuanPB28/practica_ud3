@@ -102,4 +102,25 @@ class MantenimientoController extends Controller
             return response()->json(['message' => 'Error al eliminar el mantenimiento'], 500);
         }
     }
+
+    /**
+     * Display a listing of the resource.
+     * 
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function operaciones(int $id): JsonResponse
+    {
+        try {
+            $mantenimiento = Mantenimiento::find($id);
+            if ($mantenimiento) {
+                return response()->json($mantenimiento->operaciones, 200);
+            } else {
+                return response()->json(['message' => 'Mantenimiento no encontrado'], 404);
+            }
+        }
+        catch (Exception $e) {
+            return response()->json(['message' => 'Error al obtener las operaciones del mantenimiento'], 500);
+        }
+    }
 }

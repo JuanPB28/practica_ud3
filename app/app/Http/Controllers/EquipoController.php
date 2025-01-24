@@ -102,4 +102,64 @@ class EquipoController extends Controller
             return response()->json(['message' => 'Error al eliminar el equipo'], 500);
         }
     }
+
+    /**
+     * Display the specified resource.
+     * 
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function ficha_tecnica(int $id): JsonResponse
+    {
+        try {
+            $equipo = Equipo::find($id);
+            if ($equipo) {
+                return response()->json($equipo->ficha_tecnica, 200);
+            } else {
+                return response()->json(['message' => 'Equipo no encontrado'], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Error al obtener la ficha técnica'], 500);
+        }
+    }
+
+    /**
+     * Display a listing of the resource.
+     * 
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function incidencias(int $id): JsonResponse
+    {
+        try {
+            $equipo = Equipo::find($id);
+            if ($equipo) {
+                return response()->json($equipo->incidencias, 200);
+            } else {
+                return response()->json(['message' => 'Equipo no encontrado'], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Error al obtener las incidencias'], 500);
+        }
+    }
+
+    /**
+     * Display a listing of the resource.
+     * 
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function mantenimientos(int $id): JsonResponse
+    {
+        try {
+            $equipo = Equipo::find($id);
+            if ($equipo) {
+                return response()->json($equipo->mantenimientos, 200);
+            } else {
+                return response()->json(['message' => 'Equipo no encontrado'], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Error al obtener los mantenimientos'], 500);
+        }
+    }
 }
