@@ -7,6 +7,7 @@ use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\FichaTecnicaController;
 use App\Http\Controllers\OperacionController;
 use App\Http\Controllers\MantenimientoController;
+use App\Http\Controllers\IncidenciaController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -19,6 +20,7 @@ Route::apiResource('equipo', EquipoController::class);
 Route::apiResource('ficha_tecnica', FichaTecnicaController::class);
 Route::apiResource('operacion', OperacionController::class);
 Route::apiResource('mantenimiento', MantenimientoController::class);
+Route::apiResource('incidencia', IncidenciaController::class);
 
 // Ruta Usuario
 Route::get('/usuarios', [UsuarioController::class, 'index']);
@@ -54,3 +56,10 @@ Route::get('/mantenimiento/{id}', [MantenimientoController::class, 'show']);
 Route::post('/mantenimiento', [MantenimientoController::class, 'store']);
 Route::put('/mantenimiento/{id}', [MantenimientoController::class, 'update']);
 Route::delete('/mantenimiento/{id}', [MantenimientoController::class, 'destroy']);
+
+// Ruta Incidencia
+Route::get('/incidencias', [IncidenciaController::class, 'index']);
+Route::get('/incidencia/{id}', [IncidenciaController::class, 'show']);
+Route::post('/incidencia', [IncidenciaController::class, 'store']);
+Route::put('/incidencia/{id}', [IncidenciaController::class, 'update']);
+Route::delete('/incidencia/{id}', [IncidenciaController::class, 'destroy']);

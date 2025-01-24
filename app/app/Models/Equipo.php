@@ -19,4 +19,9 @@ class Equipo extends Model
     {
         return $this->hasMany(Mantenimiento::class, 'id_equipo');
     }
+
+    public function incidencias()
+    {
+        return $this->hasMany(Incidencia::class, 'id_equipo');
+    }
 }

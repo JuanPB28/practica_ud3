@@ -54,6 +54,15 @@ return new class extends Migration
             $table->foreignId('id_mantenimiento')->constrained('mantenimientos');
             $table->timestamps();
         });
+
+        Schema::create('incidencias', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('id_usuario')->constrained('usuarios');
+            $table->foreignId('id_equipo')->constrained('equipos');
+            $table->string('descripcion');
+            $table->string('estado');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -61,10 +70,12 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('usuarios');
-        Schema::dropIfExists('equipos');
-        Schema::dropIfExists('fichas_tecnicas');
-        Schema::dropIfExists('operaciones');
+        Schema::dropIfExists('incidencias');
+        Schema::dropIfExists('operaciones_mantenimientos');
         Schema::dropIfExists('mantenimientos');
+        Schema::dropIfExists('operaciones');
+        Schema::dropIfExists('fichas_tecnicas');
+        Schema::dropIfExists('equipos');
+        Schema::dropIfExists('usuarios');
     }
 };

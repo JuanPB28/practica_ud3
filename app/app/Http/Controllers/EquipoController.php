@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Equipo;
+use Exception;
+use Illuminate\Http\JsonResponse;
 
 class EquipoController extends Controller
 {

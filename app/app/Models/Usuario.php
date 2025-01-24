@@ -14,4 +14,14 @@ class Usuario extends Model
     {
         return $this->hasMany(Mantenimiento::class, 'id_usuario');
     }
+
+    public function incidencias()
+    {
+        return $this->hasMany(Incidencia::class, 'id_usuario');
+    }
+
+    public function equipos()
+    {
+        return $this->hasManyThrough(Equipo::class, Mantenimiento::class);
+    }
 }
