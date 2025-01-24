@@ -57,7 +57,7 @@ return new class extends Migration
 
         Schema::create('incidencias', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_usuario')->constrained('usuarios');
+            $table->foreignId('id_usuario')->constrained('usuarios')->nullable();
             $table->foreignId('id_equipo')->constrained('equipos');
             $table->string('descripcion');
             $table->string('estado');
