@@ -2,6 +2,10 @@
 
 ## Descripción
 
+#### Software Gestión de Mantenimiento de Equipos Informáticos
+
+Supongamos que un cliente nos solicita implimentar un sistema para gestionar el mantenimiento de los equipos informáticos de su empresa. Para ello se debe administrar a los usuarios, equipos y sus respectivas fichas técnicas, así como gestionar incidencias, mantenimientos y las operaciones asociadas a los equipos.
+
 ## Modelo ER
 
 ## Way of working
