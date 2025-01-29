@@ -6,9 +6,22 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Exception;
 use App\Models\TipoEquipo;
+use Illuminate\Support\Facades\Validator;
 
 class TipoEquipoController extends Controller
 {
+    private function validateRequest(Request $request): bool
+    {
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required|string',
+            'descripcion' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return false;
+        }
+    }
+
     // CRUD
 
     /**
@@ -54,6 +67,10 @@ class TipoEquipoController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
+        if (!$this->validateRequest($request)) {
+            return response()->json(['message' => 'Datos incorrectos'], 400);
+        }
+
         try {
             $tipoEquipo = TipoEquipo::create($request->all());
             return response()->json($tipoEquipo, 201);
@@ -71,6 +88,10 @@ class TipoEquipoController extends Controller
      */
     public function update(Request $request, int $id): JsonResponse
     {
+        if (!$this->validateRequest($request)) {
+            return response()->json(['message' => 'Datos incorrectos'], 400);
+        }
+        
         try {
             $tipoEquipo = TipoEquipo::find($id);
             if ($tipoEquipo) {

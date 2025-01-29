@@ -5,10 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Exception;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Usuario;
 
 class UsuarioController extends Controller
 {
+    private function validateRequest(Request $request): bool
+    {
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required|string',
+            'email' => 'required|email',
+        ]);
+
+        if ($validator->fails()) {
+            return false;
+        }
+    }
+
     // CRUD
 
     /**
@@ -54,6 +67,10 @@ class UsuarioController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
+        if (!$this->validateRequest($request)) {
+            return response()->json(['message' => 'Datos incorrectos'], 400);
+        }
+
         try {
             $usuario = Usuario::create($request->all());
             return response()->json($usuario, 201);
@@ -71,6 +88,10 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, int $id): JsonResponse
     {
+        if (!$this->validateRequest($request)) {
+            return response()->json(['message' => 'Datos incorrectos'], 400);
+        }
+        
         try {
             $usuario = Usuario::find($id);
             if ($usuario) {

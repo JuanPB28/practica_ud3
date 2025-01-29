@@ -6,9 +6,22 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Models\Operacion;
 use Exception;
+use Illuminate\Support\Facades\Validator;
 
 class OperacionController extends Controller
 {
+    private function validateRequest(Request $request): bool
+    {
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required|string',
+            'descripcion' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return false;
+        }
+    }
+
     // CRUD
 
     /**
@@ -54,6 +67,10 @@ class OperacionController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
+        if (!$this->validateRequest($request)) {
+            return response()->json(['message' => 'Datos incorrectos'], 400);
+        }
+
         try {
             $operacion = Operacion::create($request->all());
             return response()->json($operacion, 201);
@@ -71,6 +88,10 @@ class OperacionController extends Controller
      */
     public function update(Request $request, int $id): JsonResponse
     {
+        if (!$this->validateRequest($request)) {
+            return response()->json(['message' => 'Datos incorrectos'], 400);
+        }
+        
         try {
             $operacion = Operacion::find($id);
             if ($operacion) {

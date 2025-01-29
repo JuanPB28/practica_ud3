@@ -6,9 +6,24 @@ use Illuminate\Http\Request;
 use App\Models\Incidencia;
 use Illuminate\Http\JsonResponse;
 use Exception;
+use Illuminate\Support\Facades\Validator;
 
 class IncidenciaController extends Controller
 {
+    private function validateRequest(Request $request): bool
+    {
+        $validator = Validator::make($request->all(), [
+            'id_usuario' => 'required|integer',
+            'id_equipo' => 'required|integer',
+            'descripcion' => 'required|string',
+            'estado' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return false;
+        }
+    }
+
     // CRUD
 
     /**
@@ -54,6 +69,10 @@ class IncidenciaController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
+        if (!$this->validateRequest($request)) {
+            return response()->json(['message' => 'Datos incorrectos'], 400);
+        }
+
         try {
             $incidencia = Incidencia::create($request->all());
             return response()->json($incidencia, 201);
@@ -71,6 +90,10 @@ class IncidenciaController extends Controller
      */
     public function update(Request $request, int $id): JsonResponse
     {
+        if (!$this->validateRequest($request)) {
+            return response()->json(['message' => 'Datos incorrectos'], 400);
+        }
+        
         try {
             $incidencia = Incidencia::find($id);
             if ($incidencia) {

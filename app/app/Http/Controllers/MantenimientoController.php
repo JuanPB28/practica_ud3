@@ -5,10 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Exception;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Mantenimiento;
 
 class MantenimientoController extends Controller
 {
+    private function validateRequest(Request $request): bool
+    {
+        $validator = Validator::make($request->all(), [
+            'id_usuario' => 'required|integer',
+            'id_equipo' => 'required|integer',
+            'observaciones' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return false;
+        }
+    }
+
     // CRUD
 
     /**
@@ -54,6 +68,10 @@ class MantenimientoController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
+        if (!$this->validateRequest($request)) {
+            return response()->json(['message' => 'Datos incorrectos'], 400);
+        }
+
         try {
             $mantenimiento = Mantenimiento::create($request->all());
             return response()->json($mantenimiento, 201);
@@ -71,6 +89,10 @@ class MantenimientoController extends Controller
      */
     public function update(Request $request, int $id): JsonResponse
     {
+        if (!$this->validateRequest($request)) {
+            return response()->json(['message' => 'Datos incorrectos'], 400);
+        }
+        
         try {
             $mantenimiento = Mantenimiento::find($id);
             if ($mantenimiento) {

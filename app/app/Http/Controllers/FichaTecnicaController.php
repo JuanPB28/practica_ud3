@@ -5,10 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Exception;
+use Illuminate\Support\Facades\Validator;
 use App\Models\FichaTecnica;
 
 class FichaTecnicaController extends Controller
 {
+    private function validateRequest(Request $request): bool
+    {
+        $validator = Validator::make($request->all(), [
+            'id_equipo' => 'required|integer',
+            'num_serie' => 'required|string',
+            'marca' => 'required|string',
+            'modelo' => 'required|string',
+            'so' => 'required|string',
+            'componentes' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return false;
+        }
+    }
+
     // CRUD
 
     /**
@@ -54,6 +71,10 @@ class FichaTecnicaController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
+        if (!$this->validateRequest($request)) {
+            return response()->json(['message' => 'Datos incorrectos'], 400);
+        }
+
         try {
             $fichaTecnica = FichaTecnica::create($request->all());
             return response()->json($fichaTecnica, 201);
@@ -71,6 +92,10 @@ class FichaTecnicaController extends Controller
      */
     public function update(Request $request, int $id): JsonResponse
     {
+        if (!$this->validateRequest($request)) {
+            return response()->json(['message' => 'Datos incorrectos'], 400);
+        }
+        
         try {
             $fichaTecnica = FichaTecnica::find($id);
             if ($fichaTecnica) {

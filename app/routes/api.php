@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\FichaTecnicaController;
+use App\Http\Controllers\TipoEquipoController;
 use App\Http\Controllers\OperacionController;
 use App\Http\Controllers\MantenimientoController;
 use App\Http\Controllers\IncidenciaController;
@@ -17,6 +18,7 @@ Route::get('/user', function (Request $request) {
 
 Route::apiResource('usuario', UsuarioController::class);
 Route::apiResource('equipo', EquipoController::class);
+Route::apiResource('tipo_equipo', TipoEquipoController::class);
 Route::apiResource('ficha_tecnica', FichaTecnicaController::class);
 Route::apiResource('operacion', OperacionController::class);
 Route::apiResource('mantenimiento', MantenimientoController::class);
@@ -43,6 +45,15 @@ Route::delete('/equipo/{id}', [EquipoController::class, 'destroy']);
 Route::get('/equipo/{id}/ficha_tecnica', [EquipoController::class, 'ficha_tecnica']);
 Route::get('/equipo/{id}/incidencias', [EquipoController::class, 'incidencias']);
 Route::get('/equipo/{id}/mantenimientos', [EquipoController::class, 'mantenimientos']);
+
+// Ruta TipoEquipo
+Route::get('/tipos_equipos', [TipoEquipoController::class, 'index']);
+Route::get('/tipo_equipo/{id}', [TipoEquipoController::class, 'show']);
+Route::post('/tipo_equipo', [TipoEquipoController::class, 'store']);
+Route::put('/tipo_equipo/{id}', [TipoEquipoController::class, 'update']);
+Route::delete('/tipo_equipo/{id}', [TipoEquipoController::class, 'destroy']);
+
+Route::get('/tipo_equipo/{id}/equipos', [TipoEquipoController::class, 'equipos']);
 
 // Ruta FichaTecnica
 Route::get('/fichas_tecnicas', [FichaTecnicaController::class, 'index']);

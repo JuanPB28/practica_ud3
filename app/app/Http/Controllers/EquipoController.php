@@ -6,9 +6,23 @@ use Illuminate\Http\Request;
 use App\Models\Equipo;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Validator;
 
 class EquipoController extends Controller
 {
+    private function validateRequest(Request $request): bool
+    {
+        $validator = Validator::make($request->all(), [
+            'id_tipo_equipo' => 'required|integer',
+            'aula' => 'required|string',
+            'mesa' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return false;
+        }
+    }
+
     // CRUD
 
     /**
@@ -54,6 +68,10 @@ class EquipoController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
+        if (!$this->validateRequest($request)) {
+            return response()->json(['message' => 'Datos incorrectos'], 400);
+        }
+
         try {
             $equipo = Equipo::create($request->all());
             return response()->json($equipo, 201);
@@ -71,6 +89,10 @@ class EquipoController extends Controller
     */
     public function update(Request $request, int $id): JsonResponse
     {
+        if (!$this->validateRequest($request)) {
+            return response()->json(['message' => 'Datos incorrectos'], 400);
+        }
+        
         try {
             $equipo = Equipo::find($id);
             if ($equipo) {
