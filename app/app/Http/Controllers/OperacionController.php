@@ -9,6 +9,8 @@ use Exception;
 
 class OperacionController extends Controller
 {
+    // CRUD
+
     /**
      * Display a listing of the resource.
      * 
@@ -102,4 +104,26 @@ class OperacionController extends Controller
             return response()->json(['message' => 'Error al eliminar la operacion'], 500);
         }
     } 
+
+    // Relationships
+
+    /**
+     * Display a listing of the resource.
+     * 
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function mantenimientos(int $id): JsonResponse
+    {
+        try {
+            $operacion = Operacion::find($id);
+            if ($operacion) {
+                return response()->json($operacion->mantenimientos, 200);
+            } else {
+                return response()->json(['message' => 'Operacion no encontrada'], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Error al obtener los mantenimientos de la operacion'], 500);
+        }
+    }
 }

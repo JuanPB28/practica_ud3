@@ -17,8 +17,21 @@ return new class extends Migration
             $table->string('email')->unique();
         });
 
+        Schema::create('operaciones', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre');
+            $table->string('descripcion');
+        });
+
+        Schema::create('tipos_equipos', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre')->unique();
+            $table->string('descripcion');
+        });
+
         Schema::create('equipos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_tipo_equipo')->constrained('tipos_equipos');
             $table->string('aula');
             $table->string('mesa');
         });
@@ -32,12 +45,6 @@ return new class extends Migration
             $table->string('so');
             $table->string('componentes');
             $table->timestamps();
-        });
-
-        Schema::create('operaciones', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre');
-            $table->string('descripcion');
         });
 
         Schema::create('mantenimientos', function (Blueprint $table) {
@@ -73,9 +80,10 @@ return new class extends Migration
         Schema::dropIfExists('incidencias');
         Schema::dropIfExists('operaciones_mantenimientos');
         Schema::dropIfExists('mantenimientos');
-        Schema::dropIfExists('operaciones');
         Schema::dropIfExists('fichas_tecnicas');
         Schema::dropIfExists('equipos');
+        Schema::dropIfExists('tipos_equipos');
+        Schema::dropIfExists('operaciones');
         Schema::dropIfExists('usuarios');
     }
 };

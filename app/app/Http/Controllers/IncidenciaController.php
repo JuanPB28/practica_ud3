@@ -9,6 +9,8 @@ use Exception;
 
 class IncidenciaController extends Controller
 {
+    // CRUD
+
     /**
      * Display a listing of the resource.
      * 
@@ -100,6 +102,48 @@ class IncidenciaController extends Controller
             }
         } catch (Exception $e) {
             return response()->json(['message' => 'Error al eliminar la incidencia'], 500);
+        }
+    }
+
+    // Relationships
+
+    /**
+     * Display the specified resource.
+     * 
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function usuario(int $id): JsonResponse
+    {
+        try {
+            $incidencia = Incidencia::find($id);
+            if ($incidencia) {
+                return response()->json($incidencia->usuario, 200);
+            } else {
+                return response()->json(['message' => 'Incidencia no encontrada'], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Error al obtener el usuario de la incidencia'], 500);
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     * 
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function equipo(int $id): JsonResponse
+    {
+        try {
+            $incidencia = Incidencia::find($id);
+            if ($incidencia) {
+                return response()->json($incidencia->equipo, 200);
+            } else {
+                return response()->json(['message' => 'Incidencia no encontrada'], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Error al obtener el equipo de la incidencia'], 500);
         }
     }
 }

@@ -15,14 +15,17 @@ class EquipoSeeder extends Seeder
     {
         DB::table('equipos')->insert([
             [
+                'id_tipo_equipo' => 1,
                 'aula' => 'Aula 1',
                 'mesa' => 'Mesa 1',
             ],
             [
+                'id_tipo_equipo' => 2,
                 'aula' => 'Aula 2',
                 'mesa' => 'Mesa 2',
             ],
             [
+                'id_tipo_equipo' => 3,
                 'aula' => 'Aula 3',
                 'mesa' => 'Mesa 3',
             ],

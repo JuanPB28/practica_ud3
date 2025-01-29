@@ -9,6 +9,8 @@ use App\Models\Mantenimiento;
 
 class MantenimientoController extends Controller
 {
+    // CRUD
+
     /**
      * Display a listing of the resource.
      * 
@@ -100,6 +102,48 @@ class MantenimientoController extends Controller
             }
         } catch (Exception $e) {
             return response()->json(['message' => 'Error al eliminar el mantenimiento'], 500);
+        }
+    }
+
+    // Relationships
+
+    /**
+     *  Display the specified resource.
+     * 
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function usuario(int $id): JsonResponse
+    {
+        try {
+            $mantenimiento = Mantenimiento::find($id);
+            if ($mantenimiento) {
+                return response()->json($mantenimiento->usuario, 200);
+            } else {
+                return response()->json(['message' => 'Mantenimiento no encontrado'], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Error al obtener el usuario del mantenimiento'], 500);
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     * 
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function equipo(int $id): JsonResponse
+    {
+        try {
+            $mantenimiento = Mantenimiento::find($id);
+            if ($mantenimiento) {
+                return response()->json($mantenimiento->equipo, 200);
+            } else {
+                return response()->json(['message' => 'Mantenimiento no encontrado'], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Error al obtener el equipo del mantenimiento'], 500);
         }
     }
 

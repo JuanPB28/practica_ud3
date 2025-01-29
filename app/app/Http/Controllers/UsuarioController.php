@@ -9,6 +9,8 @@ use App\Models\Usuario;
 
 class UsuarioController extends Controller
 {
+    // CRUD
+
     /**
      * Display a listing of the resource.
      * 
@@ -103,25 +105,7 @@ class UsuarioController extends Controller
         }
     }
 
-    /**
-     * Display a listing of the resource.
-     * 
-     * @param int $id
-     * @return JsonResponse
-     */
-    public function incidencias(int $id): JsonResponse
-    {
-        try {
-            $usuario = Usuario::find($id);
-            if ($usuario) {
-                return response()->json($usuario->incidencias, 200);
-            } else {
-                return response()->json(['message' => 'Usuario no encontrado'], 404);
-            }
-        } catch (Exception $e) {
-            return response()->json(['message' => 'Error al obtener las incidencias'], 500);
-        }
-    }
+    // Relationships
 
     /**
      * Display a listing of the resource.
@@ -140,6 +124,26 @@ class UsuarioController extends Controller
             }
         } catch (Exception $e) {
             return response()->json(['message' => 'Error al obtener los mantenimientos'], 500);
+        }
+    }
+
+    /**
+     * Display a listing of the resource.
+     * 
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function incidencias(int $id): JsonResponse
+    {
+        try {
+            $usuario = Usuario::find($id);
+            if ($usuario) {
+                return response()->json($usuario->incidencias, 200);
+            } else {
+                return response()->json(['message' => 'Usuario no encontrado'], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Error al obtener las incidencias'], 500);
         }
     }
 

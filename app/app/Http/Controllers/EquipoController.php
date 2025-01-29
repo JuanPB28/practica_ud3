@@ -9,6 +9,8 @@ use Illuminate\Http\JsonResponse;
 
 class EquipoController extends Controller
 {
+    // CRUD
+
     /**
      * Display a listing of the resource.
      * 
@@ -103,6 +105,28 @@ class EquipoController extends Controller
         }
     }
 
+    // Relationships
+
+    /**
+     * Display the specified resource.
+     * 
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function tipo_equipo(int $id): JsonResponse
+    {
+        try {
+            $equipo = Equipo::find($id);
+            if ($equipo) {
+                return response()->json($equipo->tipoEquipo, 200);
+            } else {
+                return response()->json(['message' => 'Equipo no encontrado'], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Error al obtener el tipo de equipo'], 500);
+        }
+    }
+
     /**
      * Display the specified resource.
      * 
@@ -129,26 +153,6 @@ class EquipoController extends Controller
      * @param int $id
      * @return JsonResponse
      */
-    public function incidencias(int $id): JsonResponse
-    {
-        try {
-            $equipo = Equipo::find($id);
-            if ($equipo) {
-                return response()->json($equipo->incidencias, 200);
-            } else {
-                return response()->json(['message' => 'Equipo no encontrado'], 404);
-            }
-        } catch (Exception $e) {
-            return response()->json(['message' => 'Error al obtener las incidencias'], 500);
-        }
-    }
-
-    /**
-     * Display a listing of the resource.
-     * 
-     * @param int $id
-     * @return JsonResponse
-     */
     public function mantenimientos(int $id): JsonResponse
     {
         try {
@@ -160,6 +164,26 @@ class EquipoController extends Controller
             }
         } catch (Exception $e) {
             return response()->json(['message' => 'Error al obtener los mantenimientos'], 500);
+        }
+    }
+
+    /**
+     * Display a listing of the resource.
+     * 
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function incidencias(int $id): JsonResponse
+    {
+        try {
+            $equipo = Equipo::find($id);
+            if ($equipo) {
+                return response()->json($equipo->incidencias, 200);
+            } else {
+                return response()->json(['message' => 'Equipo no encontrado'], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Error al obtener las incidencias'], 500);
         }
     }
 }

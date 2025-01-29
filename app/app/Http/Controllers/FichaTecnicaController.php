@@ -9,6 +9,8 @@ use App\Models\FichaTecnica;
 
 class FichaTecnicaController extends Controller
 {
+    // CRUD
+
     /**
      * Display a listing of the resource.
      * 
@@ -100,6 +102,28 @@ class FichaTecnicaController extends Controller
             }
         } catch (Exception $e) {
             return response()->json(['message' => 'Error al eliminar la ficha técnica'], 500);
+        }
+    }
+
+    // Relationships
+
+    /**
+     * Display the specified resource.
+     * 
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function equipo(int $id): JsonResponse
+    {
+        try {
+            $fichaTecnica = FichaTecnica::find($id);
+            if ($fichaTecnica) {
+                return response()->json($fichaTecnica->equipo, 200);
+            } else {
+                return response()->json(['message' => 'Ficha técnica no encontrada'], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Error al obtener el equipo de la ficha técnica'], 500);
         }
     }
 }
