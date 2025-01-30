@@ -10,34 +10,6 @@
 			"name": "Usuario",
 			"item": [
 				{
-					"name": "Incidencias asignadas a un usuario",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8000/api/usuario/:id/incidencias",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"usuario",
-								":id",
-								"incidencias"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "1",
-									"type": "string"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Mantenimientos realizados por un usuario",
 					"request": {
 						"method": "GET",
@@ -53,6 +25,34 @@
 								"usuario",
 								":id",
 								"mantenimientos"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Incidencias asignadas a un usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/usuario/:id/incidencias",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"usuario",
+								":id",
+								"incidencias"
 							],
 							"variable": [
 								{
@@ -99,6 +99,34 @@
 			"name": "Equipo",
 			"item": [
 				{
+					"name": "Tipo de equipo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/equipo/:id/tipo",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"equipo",
+								":id",
+								"tipo"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Ficha tecnica de un equipo",
 					"request": {
 						"method": "GET",
@@ -127,34 +155,6 @@
 					"response": []
 				},
 				{
-					"name": "Incidencias de un equipo",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8000/api/equipo/:id/incidencias",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"equipo",
-								":id",
-								"incidencias"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "1",
-									"type": "string"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Mantenimientos de un equipo",
 					"request": {
 						"method": "GET",
@@ -170,6 +170,34 @@
 								"equipo",
 								":id",
 								"mantenimientos"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Incidencias de un equipo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/equipo/:id/incidencias",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"equipo",
+								":id",
+								"incidencias"
 							],
 							"variable": [
 								{
