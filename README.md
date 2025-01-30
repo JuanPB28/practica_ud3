@@ -4,15 +4,85 @@
 
 #### Software Gestión de Mantenimiento de Equipos Informáticos
 
-Supongamos que un cliente nos solicita implimentar un sistema para gestionar el mantenimiento de los equipos informáticos de su empresa. Para ello se debe administrar a los usuarios, equipos y sus respectivas fichas técnicas, así como gestionar incidencias, mantenimientos y las operaciones asociadas a los equipos.
+Supongamos que un cliente nos solicita implementar un sistema para gestionar el mantenimiento de los ordenadores de una escuela, y la propuesta de proyecto es la siguiente:
+
+##### Objetivo del Proyecto:
+Desarrollar un programa que permita gestionar el mantenimiento de los equipos informáticos de la empresa. Para ello se debe administrar a los usuarios, equipos, sus respectivas fichas técnicas y tipos, así como gestionar incidencias, mantenimientos y las operaciones asociadas a los equipos.
+
+##### Requisitos Funcionales:
+1. Gestión de Usuarios:
+    - Registrar y gestionar usuarios (técnicos) que tendrán acceso al sistema.
+    - Cada usuario debe tener un nombre y un correo electrónico único.
+2. Gestio n de Tipo de Equipos Informáticos:
+    - Registrar y gestionar los tipos de equipos, indicando su nombre y descripción.
+3. Gestión de Equipos Informáticos:
+    - Registrar y gestionar los equipos informáticos, indicando su ubicación (aula y mesa).
+    - Cada equipo tiene que estar asociado a un tipo de equipo específico.
+    - Cada equipo debe tener una ficha técnica asociada.
+4. Gestión Fichas Técnicas:
+    - Registrar y gestionar las fichas técnicas de los equipos, incluyendo número de serie, marca, modelo, sistema operativo y componentes.
+    - Cada ficha técnica debe estar asociada a un equipo específico.
+5. Gestión de Incidencias:
+    - Registrar y gestionar incidencias reportadas por los usuarios.
+    - Cada incidencia debe estar asociada a un equipo y, opcionalmente, a un usuario.
+    - Las incidencias deben tener un estado (abierto, en proceso, cerrado) y una descripción detallada.
+6. Gestión de Mantenimientos:
+    - Registrar y gestionar los mantenimientos realizados en los equipos.
+    - Cada mantenimiento debe estar asociado a un usuario (técnico), a un equipo y las operaciones realizadas.
+    - Debe incluir observaciones y la fecha en que se realizó.
+7. Gestión de Operaciones:
+    - Registrar y gestionar las operaciones que se pueden realizar durante un mantenimiento (por ejemplo, limpieza, actualización de software, cambio de componentes).
+    - Cada operación debe tener un nombre y una descripción.
+
+##### Tecnologías a Utilizar:
+Backend: Laravel (PHP) para la lógica del servidor, API y la gestión de la base de datos.
+Base de Datos: MariaDB para el almacenamiento de datos.
+Despliegue: Docker para la containerización y despliegue en servidores.
 
 ## Modelo ER
 
+![Diagrama E-R](/diagrama.png)
+
 ## Way of working
 
-```docker compose up -d```
-```php artisan migrate --seed```
-```php artisan serve```
+### Requisitos
+
+1. PHP
+2. Composer
+3. [Laravel](https://laravel.com/docs/11.x/installation)
+4. Node.js y NPM
+5. [Docker Engine](https://docs.docker.com/engine/install/)
+6. [Postman](https://www.postman.com/downloads/)
+7. Tener descargado el proyecto
+
+### Configuración
+
+1. Construir y ejecutar el contenedor de MariaDB con Docker Compose:
+```bash
+docker compose up -d
+```
+2. Entrar en la carpeta del proyecto de laravel ```/app```.
+3. Instalar dependencias de PHP: 
+```bash
+composer install
+```
+4. Asegurarse de que el ```.env``` tiene los siguientes parámetros:
+```env
+DB_CONNECTION=mariadb
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=app
+DB_USERNAME=root
+DB_PASSWORD=password
+```
+5. Ejecutar las migraciones y seeders:
+```bash
+php artisan migrate --seed
+```
+6. Correr el servicio de Laravel: 
+```bash
+php artisan serve
+```
 
 ---
 
