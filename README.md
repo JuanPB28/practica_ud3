@@ -13,7 +13,7 @@ Desarrollar un programa que permita gestionar el mantenimiento de los equipos in
 1. Gestión de Usuarios:
     - Registrar y gestionar usuarios (técnicos) que tendrán acceso al sistema.
     - Cada usuario debe tener un nombre y un correo electrónico único.
-2. Gestio n de Tipo de Equipos Informáticos:
+2. Gestión de Tipo de Equipos Informáticos:
     - Registrar y gestionar los tipos de equipos, indicando su nombre y descripción.
 3. Gestión de Equipos Informáticos:
     - Registrar y gestionar los equipos informáticos, indicando su ubicación (aula y mesa).
