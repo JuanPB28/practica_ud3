@@ -35,9 +35,9 @@ Desarrollar un programa que permita gestionar el mantenimiento de los equipos in
     - Cada operación debe tener un nombre y una descripción.
 
 ##### Tecnologías a Utilizar:
-Backend: Laravel (PHP) para la lógica del servidor, API y la gestión de la base de datos.
-Base de Datos: MariaDB para el almacenamiento de datos.
-Despliegue: Docker para la containerización y despliegue en servidores.
+- Backend: Laravel (PHP) para la lógica del servidor, API y la gestión de la base de datos.
+- Base de Datos: MariaDB para el almacenamiento de datos.
+- Despliegue: Docker para la containerización y despliegue en servidores.
 
 ## Modelo ER
 
